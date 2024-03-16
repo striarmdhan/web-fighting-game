@@ -193,7 +193,7 @@ function startGame() {
     player.velocity.x = 0;
     enemy.velocity.x = 0;
 
-    // player movement
+    // pergerakan p1
 
     if (keys.a.pressed && player.lastKey === "a") {
       player.velocity.x = -5;
@@ -205,14 +205,14 @@ function startGame() {
       player.switchSprite("idle");
     }
 
-    // jumping
+    // loncat p1
     if (player.velocity.y < 0) {
       player.switchSprite("jump");
     } else if (player.velocity.y > 0) {
       player.switchSprite("fall");
     }
 
-    // Enemy movement
+    // pergerakan p2
     if (keys.ArrowLeft.pressed && enemy.lastKey === "ArrowLeft") {
       enemy.velocity.x = -5;
       enemy.switchSprite("run");
@@ -223,14 +223,14 @@ function startGame() {
       enemy.switchSprite("idle");
     }
 
-    // jumping
+    // loncat p2
     if (enemy.velocity.y < 0) {
       enemy.switchSprite("jump");
     } else if (enemy.velocity.y > 0) {
       enemy.switchSprite("fall");
     }
 
-    // detect for collision & enemy gets hit
+    // deteksi titik temu dan penggurangan nyawa
     if (
       rectangularCollision({
         rectangle1: player,
@@ -247,12 +247,12 @@ function startGame() {
       });
     }
 
-    // if player misses
+    // jika serangan meleset
     if (player.isAttacking && player.framesCurrent === 4) {
       player.isAttacking = false;
     }
 
-    // this is where our player gets hit
+    // hitbox
     if (
       rectangularCollision({
         rectangle1: enemy,
@@ -269,12 +269,12 @@ function startGame() {
       });
     }
 
-    // if player misses
+    // jika meleset
     if (enemy.isAttacking && enemy.framesCurrent === 2) {
       enemy.isAttacking = false;
     }
 
-    // end game based on health
+    // untuk menentukan pemenang
     if (enemy.health <= 0 || player.health <= 0) {
       determineWinner({ player, enemy, timerId });
       if (e.keyCode == 32) {
