@@ -9,3 +9,4 @@ Muhammad Akhtar Ariq (22082010235)
 
 Game ini dibuat berdasarkan tutorial
 Link: https://youtu.be/vyqbNFMDRGQ?si=JDgrlnDG3amWEqzE
+ uwelek ngene
