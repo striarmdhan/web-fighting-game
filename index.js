@@ -10,8 +10,10 @@ const gravity = 0.7;
 
 const menu = document.getElementById("menu");
 const startButton = document.getElementById("startButton");
-const optionsButton = document.getElementById("optionsButton");
+const optionsButton = document.querySelector("optionsButton");
 const exitButton = document.getElementById("exitButton");
+
+let gameStarted = false;
 
 const background = new Sprite({
   position: {
@@ -175,9 +177,10 @@ optionsButton.addEventListener("click", showOptions);
 exitButton.addEventListener("click", exitGame);
 
 function startGame() {
-  // Sembunyikan menu
-  menu.style.display = "none";
-
+  if (!gameStarted) {
+    menu.style.display = "none";
+    gameStarted = true;
+  }
   decreaseTimer();
   function animate() {
     window.requestAnimationFrame(animate);
@@ -194,7 +197,6 @@ function startGame() {
     enemy.velocity.x = 0;
 
     // pergerakan p1
-
     if (keys.a.pressed && player.lastKey === "a") {
       player.velocity.x = -5;
       player.switchSprite("run");
@@ -277,18 +279,25 @@ function startGame() {
     // untuk menentukan pemenang
     if (enemy.health <= 0 || player.health <= 0) {
       determineWinner({ player, enemy, timerId });
-      if (e.keyCode == 32) {
-        document.location.reload();
-        console.log("RESET");
+      gameStarted = false;
+      document.addEventListener("keydown", space, false);
+      function space(e) {
+        if ((e.keyCode == 32) && (!gameStarted)) {
+          gameStarted = true;
+          startGame();
+          //ini masih eror
+          // console.log(animate());
+        }
       }
     }
   }
 
   animate();
-
+  
+  //untuk kembali ke menu
   document.addEventListener("keydown", space, false);
   function space(e) {
-    if (e.keyCode == 32) {
+    if (e.keyCode == 27) {
       document.location.reload();
       console.log("RESET");
     }
@@ -357,8 +366,7 @@ function startGame() {
 }
 
 function showOptions() {
-  // Tampilkan opsi (mungkin dalam bentuk overlay atau layar terpisah)
-  console.log("Options menu is not implemented yet");
+  document.body.classList.add("info")
 }
 
 function exitGame() {
