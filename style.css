@@ -132,22 +132,6 @@
   }
 }
 
-/* .info {
-  position: absolute;
-  top: -100%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  width: 800px;
-  height: 600px;
-  padding: 20px;
-  background-color: rgba(255, 255, 255, 0.8);
-  border-radius: 10px;
-  box-shadow: 0px 2px 5px 5px rgba(0, 0, 0, 0.1);
-  transition: top 0ms ease-in-out 300ms, 
-              opacity 300ms ease-in-out, 
-              margin-top 300ms ease-in-out;
-} */
 
 .close {
   position: absolute;
@@ -170,7 +154,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: rgba(255, 255, 255, 0.9);
+  background: radial-gradient(#6d4b00, #b6bfbf);
   /* Transparan */
   padding: 20px;
   border-radius: 10px;
@@ -179,10 +163,10 @@
   /* Pastikan lebih tinggi dari menu */
 }
 
-.info h2 {
+.PopUp h2 {
   font-size: 32px;
   margin-bottom: 50px;
-  color: #000000;
+  color: #ffffff;
   font-weight: 800;
 }
 
@@ -211,6 +195,11 @@
   transition: transform 0.3s ease;
   text-align: center;
   justify-content: center;
+}
+
+.infoP p {
+  font-size: 100px;
+  font-weight: bold;
 }
 
 .infoP:hover {
