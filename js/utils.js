@@ -1,3 +1,4 @@
+//hitbox
 function rectangularCollision({ rectangle1, rectangle2 }) {
   return (
     rectangle1.attackBox.position.x + rectangle1.attackBox.width >=
@@ -10,6 +11,7 @@ function rectangularCollision({ rectangle1, rectangle2 }) {
   );
 }
 
+//untuk mementukan pememeang dan menampilakan pemenang
 function determineWinner({ player, enemy, timerId }) {
   clearTimeout(timerId);
   document.querySelector("#displayText").style.display = "flex";
@@ -25,6 +27,7 @@ function determineWinner({ player, enemy, timerId }) {
   }
 }
 
+//fungsi waktu
 let timer = 60;
 let timerId;
 function decreaseTimer() {

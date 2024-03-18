@@ -10,7 +10,7 @@ const gravity = 0.7;
 
 const menu = document.getElementById("menu");
 const startButton = document.getElementById("startButton");
-const optionsButton = document.querySelector("optionsButton");
+const optionsButton = document.getElementById("optionsButton");
 const exitButton = document.getElementById("exitButton");
 
 let gameStarted = false;
@@ -33,6 +33,26 @@ const shop = new Sprite({
   scale: 2.75,
   framesMax: 6,
 });
+
+// const info1 = new Sprite({
+//   position: {
+//     x: 800,
+//     y: 250,
+//   },
+//   imageSrc: "./img/p1/idle.png",
+//   scale: 2.5,
+//   framesMax: 8,
+// });
+
+// const info2 = new Sprite({
+//   position: {
+//     x: 300,
+//     y: 250,
+//   },
+//   imageSrc: "./img/p2/idle.png",
+//   scale: 2.5,
+//   framesMax: 8,
+// });
 
 const player = new Fighter({
   position: {
@@ -282,7 +302,7 @@ function startGame() {
       gameStarted = false;
       document.addEventListener("keydown", space, false);
       function space(e) {
-        if ((e.keyCode == 32) && (!gameStarted)) {
+        if (e.keyCode == 32 && !gameStarted) {
           gameStarted = true;
           startGame();
           //ini masih eror
@@ -293,10 +313,10 @@ function startGame() {
   }
 
   animate();
-  
+
   //untuk kembali ke menu
-  document.addEventListener("keydown", space, false);
-  function space(e) {
+  window.addEventListener("keydown", esc, false);
+  function esc(e) {
     if (e.keyCode == 27) {
       document.location.reload();
       console.log("RESET");
@@ -365,8 +385,33 @@ function startGame() {
   });
 }
 
+
+//animasi gambar masih blm bisa
 function showOptions() {
-  document.body.classList.add("info")
+  const closeButton = document.querySelector(".close");
+  const popUp = document.getElementById("myPopUp");
+
+  popUp.style.display = "block";
+  
+  // const infoContainer = document.createElement("div");
+  // infoContainer.classList.add("infoP");
+  // popUp.appendChild(infoContainer);
+
+  const info1 = new Sprite({
+    position: { x: 599, y: 400 }, // Sesuaikan dengan posisi yang diinginkan
+    imageSrc: "./img/p1/idle.png",
+    scale: 2.7, // Sesuaikan dengan skala yang diinginkan
+    framesMax: 8, // Sesuaikan dengan jumlah frame maksimum
+  });
+  function animate() {
+    window.requestAnimationFrame(animate);
+    c.clearRect(0, 0, canvas.width, canvas.height);
+    info1.update(); // Perbarui sprite gambar bergerak
+  }
+  animate();
+  closeButton.addEventListener("click", function () {
+    popUp.style.display = "none";
+  });
 }
 
 function exitGame() {
