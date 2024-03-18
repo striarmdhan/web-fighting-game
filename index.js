@@ -306,8 +306,8 @@ function startGame() {
     function space(e) {
       if (e.keyCode == 32) {
           // Pastikan permainan belum dimulai sebelum me-restart
-          gameStarted = true; // tandai permainan sudah dimulai
-          document.location.reload(); // Mulai ulang permainan
+          gameStarted = true; 
+          document.location.reload(); 
       }
     }
   }
