@@ -201,6 +201,7 @@ function startGame() {
     menu.style.display = "none";
     gameStarted = true;
   }
+
   decreaseTimer();
   function animate() {
     window.requestAnimationFrame(animate);
@@ -301,13 +302,12 @@ function startGame() {
       determineWinner({ player, enemy, timerId });
       gameStarted = false;
       document.addEventListener("keydown", space, false);
-      function space(e) {
-        if (e.keyCode == 32 && !gameStarted) {
-          gameStarted = true;
-          startGame();
-          //ini masih eror
-          // console.log(animate());
-        }
+    }
+    function space(e) {
+      if (e.keyCode == 32) {
+          // Pastikan permainan belum dimulai sebelum me-restart
+          gameStarted = true; // tandai permainan sudah dimulai
+          document.location.reload(); // Mulai ulang permainan
       }
     }
   }
@@ -385,14 +385,13 @@ function startGame() {
   });
 }
 
-
 //animasi gambar masih blm bisa
 function showOptions() {
   const closeButton = document.querySelector(".close");
   const popUp = document.getElementById("myPopUp");
 
   popUp.style.display = "block";
-  
+
   // const infoContainer = document.createElement("div");
   // infoContainer.classList.add("infoP");
   // popUp.appendChild(infoContainer);
