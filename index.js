@@ -227,7 +227,7 @@ function startGame() {
     } else {
       player.switchSprite("idle");
     }
-
+    
     // loncat p1
     if (player.velocity.y < 0) {
       player.switchSprite("jump");
@@ -305,8 +305,6 @@ function startGame() {
     }
     function space(e) {
       if (e.keyCode == 32) {
-          // Pastikan permainan belum dimulai sebelum me-restart
-          gameStarted = true; 
           document.location.reload(); 
       }
     }
@@ -322,6 +320,10 @@ function startGame() {
       console.log("RESET");
     }
   }
+  // Deklarasi jumlah lompatan dan maks nya
+  var maxJumps = 1;
+  var jumpCount = 0;
+  var canJump = true;
   window.addEventListener("keydown", (event) => {
     if (!player.dead) {
       switch (event.key) {
@@ -334,14 +336,27 @@ function startGame() {
           player.lastKey = "a";
           break;
         case "w":
-          player.velocity.y = -20;
+          // Kondisi jika loncatan player belum sampe maks loncatan 
+           if (canJump && jumpCount < maxJumps) {
+              player.velocity.y = -16; 
+              jumpCount++;
+              // kondisi jika loncatan mencapai maks
+              if (jumpCount == maxJumps) {
+                  canJump = false;
+              }
+          }
+          // Reset jumlah loncatan ketika menyentuh tanah
+          if (player.position.y + player.height >= canvas.height - 53) {
+            jumpCount = 0;
+            canJump = true;
+          }
           break;
         case "s":
           player.attack();
           break;
       }
     }
-
+    
     if (!enemy.dead) {
       switch (event.key) {
         case "ArrowRight":
@@ -353,7 +368,18 @@ function startGame() {
           enemy.lastKey = "ArrowLeft";
           break;
         case "ArrowUp":
-          enemy.velocity.y = -20;
+          if (canJump && jumpCount < maxJumps) {
+            enemy.velocity.y = -16; 
+            jumpCount++;
+            // kondisi jika loncatan mencapai maks
+            if (jumpCount == maxJumps) {
+                canJump = false;
+            }
+        }
+        if (enemy.position.y + enemy.height >= canvas.height - 53) {
+          jumpCount = 0;
+          canJump = true;
+        }
           break;
         case "ArrowDown":
           enemy.attack();
@@ -385,6 +411,7 @@ function startGame() {
   });
 }
 
+
 //animasi gambar masih blm bisa
 function showOptions() {
   const closeButton = document.querySelector(".close");
@@ -392,20 +419,34 @@ function showOptions() {
 
   popUp.style.display = "block";
 
-  // const infoContainer = document.createElement("div");
-  // infoContainer.classList.add("infoP");
-  // popUp.appendChild(infoContainer);
-
   const info1 = new Sprite({
+    position: {
+      x: 300,
+      y: 0,
+    },
+    velocity: {
+      x: 0,
+      y: 0,
+    },
+    offset: {
+      x: 0,
+      y: 0,
+    },
     position: { x: 599, y: 400 }, // Sesuaikan dengan posisi yang diinginkan
     imageSrc: "./img/p1/idle.png",
-    scale: 2.7, // Sesuaikan dengan skala yang diinginkan
-    framesMax: 8, // Sesuaikan dengan jumlah frame maksimum
+    scale: 2.5, // Sesuaikan dengan skala yang diinginkan
+    framesMax: 4, // Sesuaikan dengan jumlah frame maksimum
+    sprites:{
+      idle: {
+        imageSrc: "./img/p1/Idle.png",
+        framesMax: 8,
+      },
+    }
   });
   function animate() {
     window.requestAnimationFrame(animate);
     c.clearRect(0, 0, canvas.width, canvas.height);
-    info1.update(); // Perbarui sprite gambar bergerak
+    info1.draw(); // Perbarui sprite gambar bergerak
   }
   animate();
   closeButton.addEventListener("click", function () {
