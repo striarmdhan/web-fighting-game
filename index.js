@@ -264,7 +264,7 @@ function startGame() {
       enemy.switchSprite("fall");
     }
 
-    // deteksi titik temu dan penggurangan nyawa
+    // deteksi titik temu dan pengurangan nyawa
     if (
       rectangularCollision({
         rectangle1: player,
@@ -311,8 +311,6 @@ function startGame() {
     // untuk menentukan pemenang
     if (enemy.health <= 0 || player.health <= 0) {
       determineWinner({ player, enemy, timerId });
-      gameStarted = false;
-      document.addEventListener("keydown", space, false);
     }
     function space(e) {
       if (e.keyCode == 32) {
@@ -339,12 +337,28 @@ function startGame() {
     if (!player.dead) {
       switch (event.key) {
         case "d":
-          keys.d.pressed = true;
-          player.lastKey = "d";
+          // jika player mencapai batas kanan canvas, player berhenti 
+          if (player.position.x + player.width >= canvas.width - player.width) {
+            keys.d.pressed = false;
+            player.switchSprite("run");
+        } else {
+            keys.d.pressed = true;
+            player.lastKey = "d";
+            player.velocity.x = 5;
+            player.switchSprite("run");
+        }
           break;
+        // jika player mencapai batas kiri canvas, player berhenti 
         case "a":
-          keys.a.pressed = true;
-          player.lastKey = "a";
+          if (player.position.x <= player.width - 10) { 
+            keys.a.pressed = false;
+            player.switchSprite("run");
+        } else {
+            keys.a.pressed = true;
+            player.lastKey = "a";
+            player.velocity.x = -5;
+            player.switchSprite("run");
+        }
           break;
         case "w":
           // Kondisi jika loncatan player belum sampe maks loncatan 
@@ -371,14 +385,31 @@ function startGame() {
     if (!enemy.dead) {
       switch (event.key) {
         case "ArrowRight":
-          keys.ArrowRight.pressed = true;
-          enemy.lastKey = "ArrowRight";
+          // jika enemy mencapai batas kanan canvas, enemy berhenti 
+          if (enemy.position.x + enemy.width >= canvas.width - enemy.width) {
+            keys.ArrowRight.pressed = false;
+            enemy.switchSprite("run");
+        } else {
+            keys.ArrowRight.pressed = true;
+            enemy.lastKey = "ArrowRight";
+            enemy.velocity.x = 5;
+            enemy.switchSprite("run");
+        }
           break;
         case "ArrowLeft":
-          keys.ArrowLeft.pressed = true;
-          enemy.lastKey = "ArrowLeft";
+           // jika enemy mencapai batas kiri canvas, enemy berhenti 
+          if (enemy.position.x <= enemy.width - 10) { 
+            keys.ArrowLeft.pressed = false;
+            enemy.switchSprite("run");
+        } else {
+            keys.ArrowLeft.pressed = true;
+            enemy.lastKey = "ArrowLeft";
+            enemy.velocity.x = -5;
+            enemy.switchSprite("run");
+        }
           break;
         case "ArrowUp":
+           // jika enemy mencapai batas kiri canvas, enemy berhenti 
           if (canJump && jumpCount < maxJumps) {
             enemy.velocity.y = -16; 
             jumpCount++;
