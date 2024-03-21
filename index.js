@@ -17,16 +17,26 @@ let gameStarted = false;
 
 const background = new Sprite({
   position: {
-    x: 0,
-    y: 0,
+    x: -525,
+    y: -110,
   },
-  imageSrc: "./img/background.png",
-  scale: 1.25,
+  imageSrc: "./img/bgstik1.jpg",
+  scale: 1.45,
 });
 
 const shop = new Sprite({
   position: {
     x: 800,
+    y: 250,
+  },
+  imageSrc: "./img/shop.png",
+  scale: 2.75,
+  framesMax: 6,
+});
+
+const shopi = new Sprite({
+  position: {
+    x: 400,
     y: 250,
   },
   imageSrc: "./img/shop.png",
@@ -67,7 +77,7 @@ const player = new Fighter({
     x: 0,
     y: 0,
   },
-  imageSrc: "./img/p1/Idle.png",
+  imageSrc: "./img/p1/Idle1.png",
   framesMax: 8,
   scale: 2.5,
   offset: {
@@ -76,8 +86,8 @@ const player = new Fighter({
   },
   sprites: {
     idle: {
-      imageSrc: "./img/p1/Idle.png",
-      framesMax: 8,
+      imageSrc: "./img/p1/Idle1.png",
+      framesMax: 8,   
     },
     run: {
       imageSrc: "./img/p1/Run.png",
@@ -208,7 +218,8 @@ function startGame() {
     c.fillStyle = "black";
     c.fillRect(0, 0, canvas.width, canvas.height);
     background.update();
-    shop.update();
+    // shop.update();
+    // shopi.update();
     c.fillStyle = "rgba(255, 255, 255, 0.15)";
     c.fillRect(0, 0, canvas.width, canvas.height);
     player.update();
