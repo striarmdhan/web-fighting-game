@@ -34,7 +34,7 @@ const shop = new Sprite({
   framesMax: 6,
 });
 
-const shopi = new Sprite({
+const shope = new Sprite({
   position: {
     x: 400,
     y: 250,
@@ -77,40 +77,40 @@ const player = new Fighter({
     x: 0,
     y: 0,
   },
-  imageSrc: "./img/p1/Idle1.png",
-  framesMax: 8,
-  scale: 2.5,
+  imageSrc: "./img/PStik/Idle.png",
+  framesMax: 5,
+  scale: 1.2,
   offset: {
     x: 215,
     y: 157,
   },
   sprites: {
     idle: {
-      imageSrc: "./img/p1/Idle1.png",
-      framesMax: 8,   
+      imageSrc: "./img/PStik/Idle.png",
+      framesMax: 5,   
     },
     run: {
-      imageSrc: "./img/p1/Run.png",
+      imageSrc: "./img/PStik/Run.png",
       framesMax: 8,
     },
     jump: {
-      imageSrc: "./img/p1/Jump.png",
+      imageSrc: "./img/PStik/Jump.png",
       framesMax: 2,
     },
     fall: {
-      imageSrc: "./img/p1/Fall.png",
+      imageSrc: "./img/PStik/Fall.png",
       framesMax: 2,
     },
     attack1: {
-      imageSrc: "./img/p1/Attack1.png",
+      imageSrc: "./img/PStik/Attack.png",
       framesMax: 6,
     },
     takeHit: {
-      imageSrc: "./img/p1/Take Hit - white silhouette.png",
+      imageSrc: "./img/PStik/Take Hit.png",
       framesMax: 4,
     },
     death: {
-      imageSrc: "./img/p1/Death.png",
+      imageSrc: "./img/PStik/Death.png",
       framesMax: 6,
     },
   },
