@@ -79,9 +79,9 @@ const player = new Fighter({
   },
   imageSrc: "./img/PStik/Idle.png",
   framesMax: 5,
-  scale: 1.2,
+  scale: 0.9,
   offset: {
-    x: 215,
+    x: 90,
     y: 157,
   },
   sprites: {
@@ -116,10 +116,10 @@ const player = new Fighter({
   },
   attackBox: {
     offset: {
-      x: 100,
-      y: 50,
+      x: 20,
+      y: 30,
     },
-    width: 160,
+    width: 100,
     height: 50,
   },
 });
@@ -140,9 +140,9 @@ const enemy = new Fighter({
   },
   imageSrc: "./img/PStik2/Idle.png",
   framesMax: 5,
-  scale: 1.2,
+  scale: 0.95,
   offset: {
-    x: 215,
+    x: 20,
     y: 167,
   },
   sprites: {
@@ -152,7 +152,7 @@ const enemy = new Fighter({
     },
     run: {
       imageSrc: "./img/PStik2/Run.png",
-      framesMax: 8,
+      framesMax: 7,
     },
     jump: {
       imageSrc: "./img/PStik2/Jump.png",
@@ -177,10 +177,10 @@ const enemy = new Fighter({
   },
   attackBox: {
     offset: {
-      x: -170,
-      y: 50,
+      x: -70,
+      y: 30,
     },
-    width: 170,
+    width: 80,
     height: 50,
   },
 });
@@ -311,13 +311,16 @@ function startGame() {
     // untuk menentukan pemenang
     if (enemy.health <= 0 || player.health <= 0) {
       determineWinner({ player, enemy, timerId });
-    }
-    function space(e) {
-      if (e.keyCode == 32) {
-          document.location.reload(); 
-      }
+      gameStarted = false;
     }
   }
+  window.addEventListener("keydown", space, false);
+    function space(e) {
+      if (e.keyCode == 32) {
+          document.location.reload();
+          console.log("RESET"); 
+      }
+    }
 
   animate();
 
@@ -338,7 +341,7 @@ function startGame() {
       switch (event.key) {
         case "d":
           // jika player mencapai batas kanan canvas, player berhenti 
-          if (player.position.x + player.width >= canvas.width - player.width) {
+          if (player.position.x + player.width >= canvas.width - 30) {
             keys.d.pressed = false;
             player.switchSprite("run");
         } else {
@@ -350,7 +353,7 @@ function startGame() {
           break;
         // jika player mencapai batas kiri canvas, player berhenti 
         case "a":
-          if (player.position.x <= player.width - 10) { 
+          if (player.position.x <= player.width + 20) { 
             keys.a.pressed = false;
             player.switchSprite("run");
         } else {
@@ -371,7 +374,7 @@ function startGame() {
               }
           }
           // Reset jumlah loncatan ketika menyentuh tanah
-          if (player.position.y + player.height >= canvas.height - 53) {
+          if (player.position.y + player.height >= canvas.height + 100) {
             jumpCount = 0;
             canJump = true;
           }
@@ -386,7 +389,7 @@ function startGame() {
       switch (event.key) {
         case "ArrowRight":
           // jika enemy mencapai batas kanan canvas, enemy berhenti 
-          if (enemy.position.x + enemy.width >= canvas.width - enemy.width) {
+          if (enemy.position.x + enemy.width >= canvas.width - 90) {
             keys.ArrowRight.pressed = false;
             enemy.switchSprite("run");
         } else {
@@ -398,7 +401,7 @@ function startGame() {
           break;
         case "ArrowLeft":
            // jika enemy mencapai batas kiri canvas, enemy berhenti 
-          if (enemy.position.x <= enemy.width - 10) { 
+          if (enemy.position.x <= enemy.width - 30) { 
             keys.ArrowLeft.pressed = false;
             enemy.switchSprite("run");
         } else {
@@ -418,7 +421,7 @@ function startGame() {
                 canJump = false;
             }
         }
-        if (enemy.position.y + enemy.height >= canvas.height - 53) {
+        if (enemy.position.y + enemy.height >= canvas.height + 100) {
           jumpCount = 0;
           canJump = true;
         }
@@ -474,10 +477,10 @@ function showOptions() {
       x: 0,
       y: 0,
     },
-    position: { x: 599, y: 400 }, // Sesuaikan dengan posisi yang diinginkan
+    position: { x: 599, y: 400 }, 
     imageSrc: "./img/p1/idle.png",
-    scale: 2.5, // Sesuaikan dengan skala yang diinginkan
-    framesMax: 4, // Sesuaikan dengan jumlah frame maksimum
+    scale: 2.5, 
+    framesMax: 4,
     sprites:{
       idle: {
         imageSrc: "./img/p1/Idle.png",
@@ -488,7 +491,7 @@ function showOptions() {
   function animate() {
     window.requestAnimationFrame(animate);
     c.clearRect(0, 0, canvas.width, canvas.height);
-    info1.draw(); // Perbarui sprite gambar bergerak
+    info1.draw(); 
   }
   animate();
   closeButton.addEventListener("click", function () {
@@ -497,9 +500,7 @@ function showOptions() {
 }
 
 function exitGame() {
-  // Mungkin menampilkan konfirmasi sebelum keluar
   if (confirm("Are you sure you want to exit the game?")) {
-    // Keluar dari permainan (tutup tab atau jendela, dll.)
     window.close();
   }
 }
