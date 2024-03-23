@@ -138,41 +138,41 @@ const enemy = new Fighter({
     x: -50,
     y: 0,
   },
-  imageSrc: "./img/p2/Idle.png",
-  framesMax: 4,
-  scale: 2.5,
+  imageSrc: "./img/PStik2/Idle.png",
+  framesMax: 5,
+  scale: 1.2,
   offset: {
     x: 215,
     y: 167,
   },
   sprites: {
     idle: {
-      imageSrc: "./img/p2/Idle.png",
-      framesMax: 4,
+      imageSrc: "./img/PStik2/Idle.png",
+      framesMax: 5,
     },
     run: {
-      imageSrc: "./img/p2/Run.png",
+      imageSrc: "./img/PStik2/Run.png",
       framesMax: 8,
     },
     jump: {
-      imageSrc: "./img/p2/Jump.png",
+      imageSrc: "./img/PStik2/Jump.png",
       framesMax: 2,
     },
     fall: {
-      imageSrc: "./img/p2/Fall.png",
+      imageSrc: "./img/PStik2/Fall.png",
       framesMax: 2,
     },
     attack1: {
-      imageSrc: "./img/p2/Attack1.png",
-      framesMax: 4,
+      imageSrc: "./img/PStik2/Attack.png",
+      framesMax: 6,
     },
     takeHit: {
-      imageSrc: "./img/p2/Take hit white.png",
-      framesMax: 3,
+      imageSrc: "./img/PStik2/Take Hit.png",
+      framesMax: 4,
     },
     death: {
-      imageSrc: "./img/p2/Death.png",
-      framesMax: 7,
+      imageSrc: "./img/PStik2/Death.png",
+      framesMax: 6,
     },
   },
   attackBox: {
