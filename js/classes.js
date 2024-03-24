@@ -6,13 +6,13 @@ function sound(src) {
   this.sound.setAttribute("controls", "none");
   this.sound.style.display = "none";
   document.body.appendChild(this.sound);
-  this.play = function(){
+  this.play = function () {
     this.sound.play();
     this.sound.volume;
-  }
-  this.stop = function(){
+  };
+  this.stop = function () {
     this.sound.stop();
-  }
+  };
 }
 
 class Sprite {
@@ -136,13 +136,14 @@ class Fighter extends Sprite {
     this.position.y += this.velocity.y;
 
     // gravity function
-    if (this.position.y + this.height + this.velocity.y >= canvas.height + 100) {
+    if (
+      this.position.y + this.height + this.velocity.y >=
+      canvas.height + 100
+    ) {
       this.velocity.y = 0;
-      
     } else this.velocity.y += gravity;
   }
 
-  
   attack() {
     this.switchSprite("attack1");
     this.isAttacking = true;
@@ -227,7 +228,7 @@ class Fighter extends Sprite {
       case "death":
         if (this.image !== this.sprites.death.image) {
           this.image = this.sprites.death.image;
-          this.framesMax = this.sprites.death.framesMax;  
+          this.framesMax = this.sprites.death.framesMax;
           this.framesCurrent = 0;
           this.velocity.y = 20;
         }
@@ -235,4 +236,3 @@ class Fighter extends Sprite {
     }
   }
 }
-

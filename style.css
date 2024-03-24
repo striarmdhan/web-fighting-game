@@ -6,7 +6,7 @@
   height: 100%;
   background-image: url(./img/bghome.jpg);
   background-repeat: no-repeat;
-  background-size: cover; 
+  background-size: cover;
   z-index: 1;
 }
 
@@ -42,7 +42,7 @@
 #phealth {
   background-color: red;
   height: 30px;
-  width: 100%
+  width: 100%;
 }
 
 #playerHealth {
@@ -76,7 +76,7 @@
 
 #ehealth {
   background-color: red;
-  height: 30px
+  height: 30px;
 }
 
 #enemyHealth {
@@ -116,7 +116,6 @@
 }
 
 @keyframes waviy {
-
   0%,
   40%,
   100% {
@@ -127,7 +126,6 @@
     transform: translateY(-20px);
   }
 }
-
 
 .close {
   position: absolute;
@@ -149,8 +147,12 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: rgb(230,63,251);
-  background: radial-gradient(circle, rgba(230,63,251,1) 0%, rgba(70,110,252,1) 100%);
+  background: rgb(230, 63, 251);
+  background: radial-gradient(
+    circle,
+    rgba(230, 63, 251, 1) 0%,
+    rgba(70, 110, 252, 1) 100%
+  );
   /* Transparan */
   padding: 20px;
   border-radius: 10px;

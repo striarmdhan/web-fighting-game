@@ -15,7 +15,6 @@ const exitButton = document.getElementById("exitButton");
 
 let gameStarted = false;
 
-
 var myMusic;
 var hitSound;
 var jumpSound;
@@ -25,7 +24,7 @@ var deathSound;
 let deathSoundPlayed = false;
 
 myMusic = new sound("./audio/dark-cinematic-atmosphere.mp3");
-myMusic.sound.volume = 0.5;
+myMusic.sound.volume = 0.2;
 hitSound = new sound("./audio/punch-1.mp3");
 hitSound.sound.volume = 0.5;
 jumpSound = new sound("./audio/jump.mp3");
@@ -233,7 +232,7 @@ function startGame() {
     gameStarted = true;
     myMusic.play();
   }
-  
+
   decreaseTimer();
   function animate() {
     window.requestAnimationFrame(animate);
@@ -460,7 +459,6 @@ function startGame() {
             } else {
               runSound.play();
             }
-            
           }
           break;
         case "ArrowUp":
