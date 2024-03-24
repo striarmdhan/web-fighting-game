@@ -1,4 +1,19 @@
 // class Sprite
+function sound(src) {
+  this.sound = document.createElement("audio");
+  this.sound.src = src;
+  this.sound.setAttribute("preload", "auto");
+  this.sound.setAttribute("controls", "none");
+  this.sound.style.display = "none";
+  document.body.appendChild(this.sound);
+  this.play = function(){
+    this.sound.play();
+  }
+  this.stop = function(){
+    this.sound.pause();
+  }
+}
+
 class Sprite {
   constructor({
     position,
@@ -122,10 +137,11 @@ class Fighter extends Sprite {
     // gravity function
     if (this.position.y + this.height + this.velocity.y >= canvas.height + 100) {
       this.velocity.y = 0;
-      // this.position.y = 330;
+      
     } else this.velocity.y += gravity;
   }
 
+  
   attack() {
     this.switchSprite("attack1");
     this.isAttacking = true;
@@ -212,8 +228,10 @@ class Fighter extends Sprite {
           this.image = this.sprites.death.image;
           this.framesMax = this.sprites.death.framesMax;  
           this.framesCurrent = 0;
+          this.velocity.y = 20;
         }
         break;
     }
   }
 }
+

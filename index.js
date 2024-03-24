@@ -15,6 +15,9 @@ const exitButton = document.getElementById("exitButton");
 
 let gameStarted = false;
 
+var mySound;
+var myMusic;
+
 const background = new Sprite({
   position: {
     x: -525,
@@ -87,7 +90,7 @@ const player = new Fighter({
   sprites: {
     idle: {
       imageSrc: "./img/PStik/Idle.png",
-      framesMax: 5,   
+      framesMax: 5,
     },
     run: {
       imageSrc: "./img/PStik/Run.png",
@@ -211,7 +214,10 @@ function startGame() {
     menu.style.display = "none";
     gameStarted = true;
   }
-
+  mySound = new sound(".audio/cartoon-slap.mp3")
+  myMusic = new sound(".audio/dark-cinematic-atmosphere.mp3")
+  myMusic.play();
+  
   decreaseTimer();
   function animate() {
     window.requestAnimationFrame(animate);
@@ -238,7 +244,7 @@ function startGame() {
     } else {
       player.switchSprite("idle");
     }
-    
+
     // loncat p1
     if (player.velocity.y < 0) {
       player.switchSprite("jump");
@@ -312,15 +318,15 @@ function startGame() {
     if (enemy.health <= 0 || player.health <= 0) {
       determineWinner({ player, enemy, timerId });
       gameStarted = false;
-    }
-  }
-  window.addEventListener("keydown", space, false);
-    function space(e) {
-      if (e.keyCode == 32) {
+      window.addEventListener("keydown", space, false);
+      function space(e) {
+        if (e.keyCode == 32) {
           document.location.reload();
-          console.log("RESET"); 
+          console.log("RESET");
+        }
       }
     }
+  }
 
   animate();
 
@@ -340,38 +346,38 @@ function startGame() {
     if (!player.dead) {
       switch (event.key) {
         case "d":
-          // jika player mencapai batas kanan canvas, player berhenti 
+          // jika player mencapai batas kanan canvas, player berhenti
           if (player.position.x + player.width >= canvas.width - 30) {
             keys.d.pressed = false;
             player.switchSprite("run");
-        } else {
+          } else {
             keys.d.pressed = true;
             player.lastKey = "d";
             player.velocity.x = 5;
             player.switchSprite("run");
-        }
+          }
           break;
-        // jika player mencapai batas kiri canvas, player berhenti 
+        // jika player mencapai batas kiri canvas, player berhenti
         case "a":
-          if (player.position.x <= player.width + 20) { 
+          if (player.position.x <= player.width + 20) {
             keys.a.pressed = false;
             player.switchSprite("run");
-        } else {
+          } else {
             keys.a.pressed = true;
             player.lastKey = "a";
             player.velocity.x = -5;
             player.switchSprite("run");
-        }
+          }
           break;
         case "w":
-          // Kondisi jika loncatan player belum sampe maks loncatan 
-           if (canJump && jumpCount < maxJumps) {
-              player.velocity.y = -16; 
-              jumpCount++;
-              // kondisi jika loncatan mencapai maks
-              if (jumpCount == maxJumps) {
-                  canJump = false;
-              }
+          // Kondisi jika loncatan player belum sampe maks loncatan
+          if (canJump && jumpCount < maxJumps) {
+            player.velocity.y = -16;
+            jumpCount++;
+            // kondisi jika loncatan mencapai maks
+            if (jumpCount == maxJumps) {
+              canJump = false;
+            }
           }
           // Reset jumlah loncatan ketika menyentuh tanah
           if (player.position.y + player.height >= canvas.height + 100) {
@@ -381,54 +387,54 @@ function startGame() {
           break;
         case "s":
           player.attack();
+          mySound.play();
           break;
       }
     }
-    
+
     if (!enemy.dead) {
       switch (event.key) {
         case "ArrowRight":
-          // jika enemy mencapai batas kanan canvas, enemy berhenti 
+          // jika enemy mencapai batas kanan canvas, enemy berhenti
           if (enemy.position.x + enemy.width >= canvas.width - 90) {
             keys.ArrowRight.pressed = false;
             enemy.switchSprite("run");
-        } else {
+          } else {
             keys.ArrowRight.pressed = true;
             enemy.lastKey = "ArrowRight";
             enemy.velocity.x = 5;
             enemy.switchSprite("run");
-        }
+          }
           break;
         case "ArrowLeft":
-           // jika enemy mencapai batas kiri canvas, enemy berhenti 
-          if (enemy.position.x <= enemy.width - 30) { 
+          // jika enemy mencapai batas kiri canvas, enemy berhenti
+          if (enemy.position.x <= enemy.width - 30) {
             keys.ArrowLeft.pressed = false;
             enemy.switchSprite("run");
-        } else {
+          } else {
             keys.ArrowLeft.pressed = true;
             enemy.lastKey = "ArrowLeft";
             enemy.velocity.x = -5;
             enemy.switchSprite("run");
-        }
+          }
           break;
         case "ArrowUp":
-           // jika enemy mencapai batas kiri canvas, enemy berhenti 
+          // jika enemy mencapai batas kiri canvas, enemy berhenti
           if (canJump && jumpCount < maxJumps) {
-            enemy.velocity.y = -16; 
+            enemy.velocity.y = -16;
             jumpCount++;
             // kondisi jika loncatan mencapai maks
             if (jumpCount == maxJumps) {
-                canJump = false;
+              canJump = false;
             }
-        }
-        if (enemy.position.y + enemy.height >= canvas.height + 100) {
-          jumpCount = 0;
-          canJump = true;
-        }
+          }
+          if (enemy.position.y + enemy.height >= canvas.height + 100) {
+            jumpCount = 0;
+            canJump = true;
+          }
           break;
         case "ArrowDown":
           enemy.attack();
-
           break;
       }
     }
@@ -456,7 +462,6 @@ function startGame() {
   });
 }
 
-
 //animasi gambar masih blm bisa
 function showOptions() {
   const closeButton = document.querySelector(".close");
@@ -477,21 +482,21 @@ function showOptions() {
       x: 0,
       y: 0,
     },
-    position: { x: 599, y: 400 }, 
+    position: { x: 599, y: 400 },
     imageSrc: "./img/p1/idle.png",
-    scale: 2.5, 
+    scale: 2.5,
     framesMax: 4,
-    sprites:{
+    sprites: {
       idle: {
         imageSrc: "./img/p1/Idle.png",
         framesMax: 8,
       },
-    }
+    },
   });
   function animate() {
     window.requestAnimationFrame(animate);
     c.clearRect(0, 0, canvas.width, canvas.height);
-    info1.draw(); 
+    info1.draw();
   }
   animate();
   closeButton.addEventListener("click", function () {

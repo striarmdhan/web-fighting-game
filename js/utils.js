@@ -28,7 +28,7 @@ function determineWinner({ player, enemy, timerId }) {
 }
 
 //fungsi waktu
-let timer = 100;
+let timer = 60;
 let timerId;
 function decreaseTimer() {
   if (timer > 0) {
