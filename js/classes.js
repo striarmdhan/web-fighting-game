@@ -8,9 +8,10 @@ function sound(src) {
   document.body.appendChild(this.sound);
   this.play = function(){
     this.sound.play();
+    this.sound.volume;
   }
   this.stop = function(){
-    this.sound.pause();
+    this.sound.stop();
   }
 }
 

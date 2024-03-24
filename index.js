@@ -15,8 +15,26 @@ const exitButton = document.getElementById("exitButton");
 
 let gameStarted = false;
 
-var mySound;
+
 var myMusic;
+var hitSound;
+var jumpSound;
+var dmgSound;
+var runSound;
+var deathSound;
+let deathSoundPlayed = false;
+
+myMusic = new sound("./audio/dark-cinematic-atmosphere.mp3");
+myMusic.sound.volume = 0.5;
+hitSound = new sound("./audio/punch-1.mp3");
+hitSound.sound.volume = 0.5;
+jumpSound = new sound("./audio/jump.mp3");
+dmgSound = new sound("./audio/ough.mp3");
+dmgSound.sound.volume = 0.5;
+runSound = new sound("./audio/run.mp3");
+runSound.sound.volume = 0.8;
+deathSound = new sound("./audio/death.mp3");
+deathSound.sound.volume = 0.7;
 
 const background = new Sprite({
   position: {
@@ -27,25 +45,25 @@ const background = new Sprite({
   scale: 1.45,
 });
 
-const shop = new Sprite({
-  position: {
-    x: 800,
-    y: 250,
-  },
-  imageSrc: "./img/shop.png",
-  scale: 2.75,
-  framesMax: 6,
-});
+// const shop = new Sprite({
+//   position: {
+//     x: 800,
+//     y: 250,
+//   },
+//   imageSrc: "./img/shop.png",
+//   scale: 2.75,
+//   framesMax: 6,
+// });
 
-const shope = new Sprite({
-  position: {
-    x: 400,
-    y: 250,
-  },
-  imageSrc: "./img/shop.png",
-  scale: 2.75,
-  framesMax: 6,
-});
+// const shope = new Sprite({
+//   position: {
+//     x: 400,
+//     y: 250,
+//   },
+//   imageSrc: "./img/shop.png",
+//   scale: 2.75,
+//   framesMax: 6,
+// });
 
 // const info1 = new Sprite({
 //   position: {
@@ -213,10 +231,8 @@ function startGame() {
   if (!gameStarted) {
     menu.style.display = "none";
     gameStarted = true;
+    myMusic.play();
   }
-  mySound = new sound(".audio/cartoon-slap.mp3")
-  myMusic = new sound(".audio/dark-cinematic-atmosphere.mp3")
-  myMusic.play();
   
   decreaseTimer();
   function animate() {
@@ -280,6 +296,7 @@ function startGame() {
       player.framesCurrent === 4
     ) {
       enemy.takeHit();
+      dmgSound.play();
       player.isAttacking = false;
 
       gsap.to("#enemyHealth", {
@@ -302,6 +319,7 @@ function startGame() {
       enemy.framesCurrent === 2
     ) {
       player.takeHit();
+      dmgSound.play();
       enemy.isAttacking = false;
 
       gsap.to("#playerHealth", {
@@ -318,6 +336,10 @@ function startGame() {
     if (enemy.health <= 0 || player.health <= 0) {
       determineWinner({ player, enemy, timerId });
       gameStarted = false;
+      if (!deathSoundPlayed) {
+        deathSound.play();
+        deathSoundPlayed = true;
+      }
       window.addEventListener("keydown", space, false);
       function space(e) {
         if (e.keyCode == 32) {
@@ -338,6 +360,7 @@ function startGame() {
       console.log("RESET");
     }
   }
+
   // Deklarasi jumlah lompatan dan maks nya
   var maxJumps = 1;
   var jumpCount = 0;
@@ -355,6 +378,11 @@ function startGame() {
             player.lastKey = "d";
             player.velocity.x = 5;
             player.switchSprite("run");
+            if (player.velocity.y != 0) {
+              runSound.stop();
+            } else {
+              runSound.play();
+            }
           }
           break;
         // jika player mencapai batas kiri canvas, player berhenti
@@ -367,12 +395,18 @@ function startGame() {
             player.lastKey = "a";
             player.velocity.x = -5;
             player.switchSprite("run");
+            if (player.velocity.y != 0) {
+              runSound.stop();
+            } else {
+              runSound.play();
+            }
           }
           break;
         case "w":
           // Kondisi jika loncatan player belum sampe maks loncatan
           if (canJump && jumpCount < maxJumps) {
             player.velocity.y = -16;
+            jumpSound.play();
             jumpCount++;
             // kondisi jika loncatan mencapai maks
             if (jumpCount == maxJumps) {
@@ -387,7 +421,7 @@ function startGame() {
           break;
         case "s":
           player.attack();
-          mySound.play();
+          hitSound.play();
           break;
       }
     }
@@ -404,6 +438,11 @@ function startGame() {
             enemy.lastKey = "ArrowRight";
             enemy.velocity.x = 5;
             enemy.switchSprite("run");
+            if (enemy.velocity.y != 0) {
+              runSound.stop();
+            } else {
+              runSound.play();
+            }
           }
           break;
         case "ArrowLeft":
@@ -416,12 +455,19 @@ function startGame() {
             enemy.lastKey = "ArrowLeft";
             enemy.velocity.x = -5;
             enemy.switchSprite("run");
+            if (enemy.velocity.y != 0) {
+              runSound.stop();
+            } else {
+              runSound.play();
+            }
+            
           }
           break;
         case "ArrowUp":
           // jika enemy mencapai batas kiri canvas, enemy berhenti
           if (canJump && jumpCount < maxJumps) {
             enemy.velocity.y = -16;
+            jumpSound.play();
             jumpCount++;
             // kondisi jika loncatan mencapai maks
             if (jumpCount == maxJumps) {
@@ -435,6 +481,7 @@ function startGame() {
           break;
         case "ArrowDown":
           enemy.attack();
+          hitSound.play();
           break;
       }
     }
