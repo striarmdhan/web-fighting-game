@@ -13,7 +13,7 @@ const background1 = new Sprite({
       y: -110,
     },
     imageSrc: "./img/bg/bg1.jpg",
-    scale: 1.10,
+    scale: 1.14,
   });
   const background2 = new Sprite({
     position: {
@@ -21,5 +21,5 @@ const background1 = new Sprite({
       y: -110,
     },
     imageSrc: "./img/bg/bg2.jpg",
-    scale: 1.10,
+    scale: 1.16,
   });
