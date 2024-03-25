@@ -1,140 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gepuk-Gepuk</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="icon" href="favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="style.css" />
-    <style>
-      * {
-        box-sizing: border-box;
-        font-family: "Press Start 2P", cursive;
-        text-align: center;
-      }
-    </style>
-  </head>
-  <body>
-    <!-- red container div -->
-    <div id="redcontainer">
-      <!-- smaller red container div -->
-      <div
-        id="smallcontainer"
-      >
-        <!-- player health -->
-        <div 
-          id="playerhealth"          
-        >
-          <div id="phealth"></div>
-          <div
-            id="playerHealth"            
-          ></div>
-        </div>
 
-        <!-- timer -->
-        <div
-          id="timer"          
-        >
-          10
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gepuk-Gepuk</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: "Press Start 2P", cursive;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- red container div -->
+  <div id="redcontainer">
+    <!-- smaller red container div -->
+    <div id="smallcontainer">
+      <!-- player health -->
+      <div id="playerhealth">
+        <div id="phealth"></div>
+        <div id="playerHealth"></div>
+      </div>
+
+      <!-- timer -->
+      <div id="timer">
+        10
+      </div>
+      <!-- enemy health -->
+      <div id="enemyhealth" style=>
+        <div id="ehealth"></div>
+        <div id="enemyHealth"></div>
+      </div>
+      <div></div>
+    </div>
+    <div id="displayText">
+      Tie
+    </div>
+    <div id="menu">
+      <div class="isiMenu">
+        <div class="waviy">
+          <span style="--i: 1">G</span>
+          <span style="--i: 2">E</span>
+          <span style="--i: 3">P</span>
+          <span style="--i: 4">U</span>
+          <span style="--i: 5">K</span>
+          <span style="--i: 6"></span>
+          <span style="--i: 7">G</span>
+          <span style="--i: 8">E</span>
+          <span style="--i: 9">P</span>
+          <span style="--i: 10">U</span>
+          <span style="--i: 11">K</span>
         </div>
-        <!-- enemy health -->
-        <div id="enemyhealth" 
-          style=                  
-        >
-          <div id="ehealth"></div>
-          <div
-            id="enemyHealth"            
-          ></div>
-        </div>
-        <div></div>
-      </div>
-      <div
-        id="displayText"        
-      >
-        Tie
-      </div>
-      <div id="menu">
-        <div class="isiMenu">
-          <div class="waviy">
-            <span style="--i: 1">G</span>
-            <span style="--i: 2">E</span>
-            <span style="--i: 3">P</span>
-            <span style="--i: 4">U</span>
-            <span style="--i: 5">K</span>
-            <span style="--i: 6"></span>
-            <span style="--i: 7">G</span>
-            <span style="--i: 8">E</span>
-            <span style="--i: 9">P</span>
-            <span style="--i: 10">U</span>
-            <span style="--i: 11">K</span>
-          </div>
-          <br />
-          <button id="startButton">Start Game</button>
-          <button id="optionsButton">About</button>
-          <button id="exitButton">Exit</button>
-        </div>
-      </div>
-      <div id="myPopUp" class="PopUp">
-        <button class="close">&times;</button>
-        <h2>Cara Memainkan Game</h2>
-        <div class="info">
-          <div class="infoContent">
-            <div class="infoP">
-              <h3>Player 1</h3>
-              <p>W A S D</p>
-              <br />
-              <p>W = Loncat</p>
-              <br />
-              <p>A = Mundur</p>
-              <br />
-              <p>S = Serang</p>
-              <br />
-              <p>D = Maju</p>
-              <br />
-            </div>
-            <div class="infoP">
-              <h3>Player 2</h3>
-              <p>Arrow</p>
-              <br />
-              <p> ⬆  = Loncat</p>
-              <br />
-              <p> ⬅ = Mundur</p>
-              <br />
-              <p> ⬇ = Serang</p>
-              <br />
-              <p> ⮕ = Maju</p>
-              <br />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div id="canvasContainer">
-        <canvas id="canvas"></canvas>
-      </div>
-      <div id="backgroundOptions">
-        <button id="bt1" >Sengoku Temple</button>
-        <button id="bt2" >Graveyard</button>
-        <button id="bt3" >Forest</button>
-        <!-- Tambahkan tombol lain sesuai dengan jumlah gambar latar yang Anda miliki -->
+        <br />
+        <button id="startButton">Start Game</button>
+        <button id="optionsButton">About</button>
+        <button id="exitButton">Exit</button>
       </div>
     </div>
-    
-    <!-- Import Script-->
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"
-      integrity="sha512-H6cPm97FAsgIKmlBA4s774vqoN24V5gSQL4yBTDOY2su2DeXZVhQPxFK4P6GPdnZqM9fg1G3cMv5wD7e6cFLZQ=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
-    <script src="js/utils.js"></script>
-    <script src="js/classes.js"></script>
-    <script src="js/animation.js"></script>
-    <script src="index.js"></script>
-  </body>
+    <div id="myPopUp" class="PopUp">
+      <button class="close">&times;</button>
+      <h2>Cara Memainkan Game</h2>
+      <div class="info">
+        <div class="infoContent">
+          <div class="infoP">
+            <h3>Player</h3>
+            <h3>1</h3>
+            <p>W A S D</p>
+            <br />
+            <p>W = Loncat</p>
+            <br />
+            <p>A = Mundur</p>
+            <br />
+            <p>S = Serang</p>
+            <br />
+            <p>D = Maju</p>
+            <br />
+          </div>
+          <div class="infoP">
+            <h3>Player</h3>
+            <h3>2</h3>
+            <p>Arrow</p>
+            <br />
+            <p> ⬆ = Loncat</p>
+            <br />
+            <p> ⬅ = Mundur</p>
+            <br />
+            <p> ⬇ = Serang</p>
+            <br />
+            <p> ⮕ = Maju</p>
+            <br />
+          </div>
+        </div>
+      </div>
+    </div>  
+    <div id="backgroundOptions">
+      <div>
+        <h2>Choose Your Map!</h2>
+      </div>
+      <div id="containermap">
+        <!-- <button id="bt1">Sengoku Temple</button> -->
+        <button id="bt1">
+          <img src="img/bg/BgSengokuTemple.jpg" alt="bghome">
+          <h3>Sengoku Temple</h3>
+        </button>
+        <button id="bt2">
+          <img src="img/bg/bg1.jpg" alt="bg1">
+          <h3>Graveyard</h3>
+        </button>
+        <button id="bt3">
+          <img src="img/bg/bg2.jpg" alt="bg2">
+          <h3>Forest</h3>
+        </button>
+      </div>
+      <!-- Tambahkan tombol lain sesuai dengan jumlah gambar latar yang Anda miliki -->
+    </div>
+    <canvas id="canvas"></canvas>
+  </div>
+
+  <!-- Import Script-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"
+    integrity="sha512-H6cPm97FAsgIKmlBA4s774vqoN24V5gSQL4yBTDOY2su2DeXZVhQPxFK4P6GPdnZqM9fg1G3cMv5wD7e6cFLZQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/classes.js"></script>
+  <script src="js/animation.js"></script>
+  <script src="index.js"></script>
+</body>
+
 </html>

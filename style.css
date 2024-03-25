@@ -4,15 +4,21 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url(./img/bg/bghome.jpg);
+  background-image: url(./img/bg/bghome.png);
   background-repeat: no-repeat;
   background-size: cover;
   z-index: 1;
 }
 
+#menu button {
+  padding: 10px ;
+  background-color: #ffffff;
+  border-radius: 4px;
+}
+
 .isiMenu {
   position: absolute;
-  top: 40%;
+  top: 25%;
   left: 250px;
 }
 
@@ -109,7 +115,7 @@
 .waviy span {
   position: relative;
   display: inline-block;
-  color: #000000;
+  color: #ffffff;
   text-transform: uppercase;
   animation: waviy 2s infinite;
   animation-delay: calc(0.1s * var(--i));
@@ -147,11 +153,11 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: rgb(230, 63, 251);
+  background: rgb(74, 106, 233);
   background: radial-gradient(
     circle,
-    rgba(230, 63, 251, 1) 0%,
-    rgba(70, 110, 252, 1) 100%
+    rgb(74, 106, 233) 0%,
+    rgb(234, 8, 8) 100%
   );
   /* Transparan */
   padding: 20px;
@@ -184,6 +190,9 @@
 }
 
 .infoP {
+  border: solid;
+  padding: 10px;
+  border-color: #000000;
   width: 200px;
   height: 400px;
   padding: 20px;
@@ -213,4 +222,53 @@
   font-size: 11px;
   color: #666;
   margin-bottom: 10px;
+}
+
+#backgroundOptions {
+  background: linear-gradient(to right, rgb(236, 51, 51), #ffffff, #ffffff, rgb(49, 70, 236));
+  top : 10px;
+  left : 10px;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  position: absolute;
+  display: inline-block;
+  background-size: cover;
+  background-repeat: no;
+}
+
+#containermap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1px;
+}
+
+#containermap button {
+  width: 410px;
+    height: 550px;
+    padding: 2px;
+    padding-bottom: 34px;
+    background: linear-gradient(to right, rgb(71, 67, 67), #ffffff, #ffffff, rgb(71, 67, 67));
+    border-radius: 1px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    text-align: center;
+    justify-content: center;
+}
+
+#containermap button:hover {
+  transform: translateY(-5px);
+}
+
+#containermap button img {
+  max-width: 100%; 
+  height: 100%; 
+  object-fit: cover;
+}
+  
+#containermap button h3 {
+  margin-top: 5px; /* Jarak antara gambar dan teks */
+  font-size: 16px; /* Ukuran teks */
+  color: #524f4f;
 }

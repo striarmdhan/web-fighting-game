@@ -12,6 +12,7 @@ const menu = document.getElementById("menu");
 const startButton = document.getElementById("startButton");
 const optionsButton = document.getElementById("optionsButton");
 const exitButton = document.getElementById("exitButton");
+const backgroundOptions = document.getElementById("backgroundOptions");
 
 let gameStarted = false;
 
@@ -217,16 +218,19 @@ startButton.addEventListener("click", startGame);
 optionsButton.addEventListener("click", showOptions);
 exitButton.addEventListener("click", exitGame);
 
+backgroundOptions.style.display = "none";
 function startGame() {
   if (!gameStarted) {
     menu.style.display = "none";
     gameStarted = true;
+    backgroundOptions.style.display = "block";
   }
   bt1.addEventListener("click", bg1);
   bt2.addEventListener("click", bg2);
   bt3.addEventListener("click", bg3);
 
-  function bg1() {
+  function bg1() {    
+    backgroundOptions.style.display = "none";
     myMusic.play();
     decreaseTimer();
     function animate() {
@@ -500,6 +504,7 @@ function startGame() {
   }
 
   function bg2(){
+    backgroundOptions.style.display = "none";
     myMusic.play();
     decreaseTimer();
     function animate() {
@@ -772,6 +777,7 @@ function startGame() {
     animate();
   }  
   function bg3() {
+    backgroundOptions.style.display = "none";
     myMusic.play();
     decreaseTimer();
     function animate() {
