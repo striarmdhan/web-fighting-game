@@ -10,6 +10,7 @@
       href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
       rel="stylesheet"
     />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="style.css" />
     <style>
       * {
@@ -113,7 +114,15 @@
           </div>
         </div>
       </div>
-      <canvas></canvas>
+      <div id="canvasContainer">
+        <canvas id="canvas"></canvas>
+      </div>
+      <div id="backgroundOptions">
+        <button id="bt1" >Background 1</button>
+        <button id="bt2" >Background 2</button>
+        <button id="bt3" >Background 2</button>
+        <!-- Tambahkan tombol lain sesuai dengan jumlah gambar latar yang Anda miliki -->
+      </div>
     </div>
     
     <!-- Import Script-->
@@ -125,6 +134,7 @@
     ></script>
     <script src="js/utils.js"></script>
     <script src="js/classes.js"></script>
+    <script src="js/animation.js"></script>
     <script src="index.js"></script>
   </body>
 </html>
