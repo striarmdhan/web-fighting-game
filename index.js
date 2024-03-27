@@ -36,45 +36,6 @@ runSound.sound.volume = 0.8;
 deathSound = new sound("./audio/death.mp3");
 deathSound.sound.volume = 0.7;
 
-// const shop = new Sprite({
-//   position: {
-//     x: 800,
-//     y: 250,
-//   },
-//   imageSrc: "./img/shop.png",
-//   scale: 2.75,
-//   framesMax: 6,
-// });
-
-// const shope = new Sprite({
-//   position: {
-//     x: 400,
-//     y: 250,
-//   },
-//   imageSrc: "./img/shop.png",
-//   scale: 2.75,
-//   framesMax: 6,
-// });
-
-// const info1 = new Sprite({
-//   position: {
-//     x: 800,
-//     y: 250,
-//   },
-//   imageSrc: "./img/p1/idle.png",
-//   scale: 2.5,
-//   framesMax: 8,
-// });
-
-// const info2 = new Sprite({
-//   position: {
-//     x: 300,
-//     y: 250,
-//   },
-//   imageSrc: "./img/p2/idle.png",
-//   scale: 2.5,
-//   framesMax: 8,
-// });
 
 const player = new Fighter({
   position: {
