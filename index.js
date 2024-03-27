@@ -17,6 +17,9 @@ const backgroundOptions = document.getElementById("backgroundOptions");
 let gameStarted = false;
 
 var myMusic;
+var graveMusic;
+var forestMusic;
+
 var hitSound;
 var jumpSound;
 var dmgSound;
@@ -24,8 +27,11 @@ var runSound;
 var deathSound;
 let deathSoundPlayed = false;
 
-myMusic = new sound("./audio/dark-cinematic-atmosphere.mp3");
-myMusic.sound.volume = 0.2;
+myMusic = new sound("./audio/japanese-fight.mp3");
+myMusic.sound.volume = 0.1;
+graveMusic = new sound("./audio/creepy-graveyard.mp3");
+forestMusic = new sound("./audio/jungle-mystic.mp3");
+
 hitSound = new sound("./audio/punch-1.mp3");
 hitSound.sound.volume = 0.5;
 jumpSound = new sound("./audio/jump.mp3");
@@ -89,10 +95,10 @@ const player = new Fighter({
   },
   attackBox: {
     offset: {
-      x: 20,
+      x: 15,
       y: 30,
     },
-    width: 100,
+    width: 50,
     height: 50,
   },
 });
@@ -150,10 +156,10 @@ const enemy = new Fighter({
   },
   attackBox: {
     offset: {
-      x: -70,
+      x: -15,
       y: 30,
     },
-    width: 80,
+    width: 50,
     height: 50,
   },
 });
@@ -466,7 +472,7 @@ function startGame() {
 
   function bg2(){
     backgroundOptions.style.display = "none";
-    myMusic.play();
+    graveMusic.play();
     decreaseTimer();
     function animate() {
       window.requestAnimationFrame(animate);
@@ -739,7 +745,7 @@ function startGame() {
   }  
   function bg3() {
     backgroundOptions.style.display = "none";
-    myMusic.play();
+    forestMusic.play();
     decreaseTimer();
     function animate() {
       window.requestAnimationFrame(animate);
