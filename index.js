@@ -15,7 +15,7 @@ const exitButton = document.getElementById("exitButton");
 const backgroundOptions = document.getElementById("backgroundOptions");
 
 let gameStarted = false;
-
+// declaration sound
 var myMusic;
 var graveMusic;
 var forestMusic;
